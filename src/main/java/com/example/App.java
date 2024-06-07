@@ -1,7 +1,9 @@
 package com.example;
 
 import java.util.Collection;
+import java.util.List;
 import java.util.Map;
+import java.util.ArrayList;
 
 /**
  * Hello world!
@@ -22,12 +24,20 @@ public final class App {
         TCaminos caminoMontevideoCuritiva = VUELE_SEGURO.todosLosCaminos("Montevideo", "Curitiba");
         TCaminos caminoPorto_AlegreSantos = VUELE_SEGURO.todosLosCaminos("Porto_Alegre", "Santos");
 
-        System.out.println(caminoMontevideoCuritiva.imprimirCaminos());
-        System.out.println(caminoPorto_AlegreSantos.imprimirCaminos());
+        caminoMontevideoCuritiva.imprimirCaminosConsola();
+        caminoPorto_AlegreSantos.imprimirCaminosConsola();
 
         /* ej3 */
-        Collection recorrido = VUELE_SEGURO.bpf();
+        List<TVertice> bpf = (ArrayList) VUELE_SEGURO.bpf();
+        for (TVertice tVertice : bpf) {
+            System.out.println(tVertice.getEtiqueta());
+        }
 
+        System.out.println("===========================");
 
+        bpf = (ArrayList) VUELE_SEGURO.bpf("Montevideo");
+        for (TVertice tVertice : bpf) {
+            System.out.println(tVertice.getEtiqueta());
+        }
     }
 }
