@@ -38,22 +38,25 @@ public class TGrafoDirigido implements IGrafoDirigido {
         return false;
     }
 
-    public Collection<Comparable> bpf(TVertice vertice) {
+/*     public Collection<Comparable> bpf(TVertice vertice) {
         if (vertice == null) {
             throw new Error("Vertice debe ser no nulo");
         }
         List<Comparable> visitados = new LinkedList<>();
         vertice.bpf(visitados);
         return visitados;
-    }
-
+    } */
 
     public Collection<Comparable> bpf(Comparable etiquetaOrigen) {
+        this.desvisitarVertices();
+
         TVertice origen = buscarVertice(etiquetaOrigen);
         if (origen == null) {
             return null;
         }
-        return bpf(origen);
+        Collection <Comparable> devolver = new LinkedList<Comparable>();
+        origen.bpf(devolver);
+        return devolver;
     }
 
     /**
@@ -64,11 +67,13 @@ public class TGrafoDirigido implements IGrafoDirigido {
 
         this.desvisitarVertices();
 
-        List<Comparable> recorridos = new ArrayList<>(this.vertices.size());
+        LinkedList<Comparable> recorridos = new LinkedList<Comparable>();
 
         for (TVertice tVertice : vertices.values()) {
             if (!tVertice.getVisitado()) {
-                recorridos.addAll(bpf(tVertice));
+                LinkedList<Comparable> recorrido = new LinkedList<Comparable>();
+                tVertice.bpf(recorrido);
+                recorridos.addAll(recorrido);
             }
         }
         return recorridos;

@@ -101,9 +101,9 @@ public class TVertice<T> implements IVertice {
         return datos;
     }
 
-    public void bpf(Collection<TVertice> visitados) {
+    public void bpf(Collection<Comparable> visitados) {
         setVisitado(true);
-        visitados.add(this);
+        visitados.add(this.getEtiqueta());
         for (TAdyacencia adyacente : adyacentes) {
             TVertice vertAdy = adyacente.getDestino();
             if (!vertAdy.getVisitado()) {
@@ -111,6 +111,7 @@ public class TVertice<T> implements IVertice {
             }
         }
     }
+    
 
     public TVertice primerAdyacente() {
         if (this.adyacentes.getFirst() != null) {

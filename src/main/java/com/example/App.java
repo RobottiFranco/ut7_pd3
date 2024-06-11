@@ -1,6 +1,7 @@
 package com.example;
 
 import java.util.Collection;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 import java.util.ArrayList;
@@ -28,16 +29,17 @@ public final class App {
         caminoPorto_AlegreSantos.imprimirCaminosConsola();
 
         /* ej3 */
-        List<TVertice> bpf = (ArrayList) VUELE_SEGURO.bpf();
-        for (TVertice tVertice : bpf) {
-            System.out.println(tVertice.getEtiqueta());
+
+        System.out.println("\nbpf desde origen:\n");
+        Collection<Comparable> bpf = VUELE_SEGURO.bpf();
+        for (Comparable tVertice : bpf) {
+            System.out.println(tVertice);
         }
 
-        System.out.println("===========================");
-
-        bpf = (ArrayList) VUELE_SEGURO.bpf("Montevideo");
-        for (TVertice tVertice : bpf) {
-            System.out.println(tVertice.getEtiqueta());
+        System.out.println("\nbpf desde etiqueta:\n");
+        bpf = VUELE_SEGURO.bpf("Montevideo");
+        for (Comparable tVertice : bpf) {
+            System.out.println(tVertice);
         }
     }
 }
